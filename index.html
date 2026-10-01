@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digi Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="scanlines"></div>
+
+    <main>
+        <!-- PÁGINA INICIAL -->
+        <section class="inicio" id="inicio">
+            <div class="painel">
+                <div class="decoracao topo"></div>
+
+                <p class="mini-titulo">DIGITAL DATABASE // 001</p>
+
+                <h1>DIGI ANALYZER</h1>
+
+                <p class="subtitulo">
+                    Consulte informações sobre seus <span>Digimons.</span>
+                </p>
+
+                <div class="pesquisa">
+                    <span class="lupa">⌕</span>
+                    <input
+                        type="text"
+                        id="campoPesquisa"
+                        placeholder="Digite o nome de um Digimon..."
+                        autocomplete="off"
+                    >
+                    <button id="btnPesquisar">PESQUISAR</button>
+                </div>
+
+                <p class="dica">
+                    Tente: Agumon, Gabumon, Patamon ou Tentomon
+                </p>
+
+                <p class="erro" id="mensagemErro"></p>
+
+                <div class="decoracao baixo"></div>
+            </div>
+        </section>
+
+        <!-- CARTÃO DO DIGIMON -->
+        <section class="resultado" id="resultado">
+
+            <div class="topo-resultado">
+                <button class="voltar" id="btnVoltar">← VOLTAR</button>
+                <span class="status">● DATABASE ONLINE</span>
+            </div>
+
+            <article class="cartao">
+
+                <div class="imagem-area">
+                    <span class="numero" id="idDigimon">ID: #001</span>
+
+                    <img id="imagemDigimon"
+                         src="https://digimon-api.com/images/digimon/agumon.jpg"
+                         alt="Agumon">
+
+                    <div class="linha"></div>
+                </div>
+
+                <div class="informacoes">
+
+                    <p class="categoria">DIGIMON PROFILE</p>
+                    <h2 id="nomeDigimon">Agumon</h2>
+
+                    <p class="descricao" id="descricaoDigimon">
+                        Um Digimon réptil com aparência semelhante a um pequeno dinossauro.
+                        É conhecido por sua coragem e por seus ataques de fogo.
+                    </p>
+
+                    <div class="dados">
+                        <div class="dado">
+                            <span>TIPO</span>
+                            <strong id="tipoDigimon">Réptil</strong>
+                        </div>
+
+                        <div class="dado">
+                            <span>ÁREAS</span>
+                            <strong id="areasDigimon">Ilha File</strong>
+                        </div>
+
+                        <div class="dado">
+                            <span>NÍVEL</span>
+                            <strong id="nivelDigimon">Novato</strong>
+                        </div>
+                    </div>
+
+                    <div class="habilidades">
+                        <div class="titulo-habilidade">
+                            <span></span>
+                            <h3>HABILIDADES</h3>
+                        </div>
+
+                        <div class="habilidade">
+                            <strong id="habilidade1">Pepper Breath</strong>
+                            <p id="descHabilidade1">
+                                Lança uma poderosa rajada de fogo pela boca.
+                            </p>
+                        </div>
+
+                        <div class="habilidade">
+                            <strong id="habilidade2">Claw Attack</strong>
+                            <p id="descHabilidade2">
+                                Ataque realizado utilizando suas garras.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <div class="navegacao">
+                <button id="btnAnterior">← ANTERIOR</button>
+                <span id="contador">01 / 04</span>
+                <button id="btnProximo">PRÓXIMO →</button>
+            </div>
+
+        </section>
+    </main>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
