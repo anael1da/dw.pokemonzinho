@@ -8,9 +8,6 @@ const campoPesquisa = document.getElementById("campoPesquisa");
 const btnPesquisar = document.getElementById("btnPesquisar");
 const btnVoltar = document.getElementById("btnVoltar");
 
-const btnAnterior = document.getElementById("btnAnterior");
-const btnProximo = document.getElementById("btnProximo");
-
 const mensagemErro = document.getElementById("mensagemErro");
 
 
@@ -227,45 +224,7 @@ campoPesquisa.addEventListener(
     }
 );
 
-// botao proximo
 
-btnProximo.addEventListener(
-    "click",
-    function () {
-
-        if (digimons.length === 0) {
-            return;
-        }
-
-        atual++;
-
-        if (atual >= digimons.length) {
-            atual = 0;
-        }
-
-        mostrarDigimon(digimons[atual]);
-    }
-);
-
-// botao anterior
-
-btnAnterior.addEventListener(
-    "click",
-    function () {
-
-        if (digimons.length === 0) {
-            return;
-        }
-
-        atual--;
-
-        if (atual < 0) {
-            atual = digimons.length - 1;
-        }
-
-        mostrarDigimon(digimons[atual]);
-    }
-);
 
 // botao voltar
 
@@ -286,3 +245,91 @@ btnVoltar.addEventListener(
         atual = 0;
     }
 );
+
+// mostrar todos os digimons
+
+const btnVerTodos = document.getElementById("btnVerTodos");
+const listaDigimons = document.getElementById("listaDigimons");
+const btnVoltarLista = document.getElementById("btnVoltarLista");
+const gradeDigimons = document.getElementById("gradeDigimons");
+const totalDigimons = document.getElementById("totalDigimons");
+
+async function buscarTodosDigimons() {
+
+    try {
+
+        totalDigimons.textContent = "Carregando Digimons...";
+
+        gradeDigimons.innerHTML = "";
+
+        const resposta = await fetch(
+            "https://digi-api.com/api/v1/digimon?pageSize=100"
+        );
+
+        if (!resposta.ok) {
+            throw new Error("Erro ao carregar Digimons");
+        }
+
+        const dados = await resposta.json();
+
+        mostrarTodosDigimons(dados.content);
+
+        totalDigimons.textContent =
+            dados.content.length + " Digimons encontrados";
+
+    } catch (erro) {
+
+        totalDigimons.textContent =
+            "Não foi possível carregar os Digimons. Tente novamente.";
+
+    }
+}
+
+function mostrarTodosDigimons(lista) {
+
+    gradeDigimons.innerHTML = "";
+
+    lista.forEach(function(digimon) {
+
+        const card = document.createElement("div");
+
+        card.classList.add("item-digimon");
+
+        const imagem = document.createElement("img");
+
+        imagem.src = digimon.image;
+        imagem.alt = digimon.name;
+        imagem.loading = "lazy";
+
+        const nome = document.createElement("p");
+
+        nome.textContent = digimon.name;
+
+        card.appendChild(imagem);
+        card.appendChild(nome);
+
+        gradeDigimons.appendChild(card);
+
+    });
+
+}
+
+btnVerTodos.addEventListener("click", function() {
+
+    inicio.style.display = "none";
+
+    resultado.style.display = "none";
+
+    listaDigimons.style.display = "block";
+
+    buscarTodosDigimons();
+
+});
+
+btnVoltarLista.addEventListener("click", function() {
+
+    listaDigimons.style.display = "none";
+
+    inicio.style.display = "block";
+
+});

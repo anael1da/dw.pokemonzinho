@@ -41,15 +41,15 @@ main {
     min-height: calc(100vh - 64px);
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 55px 20px;
+    justify-content: flex-end;
+    padding: 55px 5%;
 }
 
 /* PÁGINA INICIAL */
 
 .inicio {
     width: 100%;
-    max-width: 1000px;
+    max-width: 650px;
 }
 
 .painel {
@@ -57,7 +57,7 @@ main {
     background: var(--painel);
     border: 2px solid var(--rosa-escuro);
     border-radius: 28px;
-    padding: 65px 80px;
+    padding: 50px 45px;
     text-align: center;
     box-shadow:
         0 0 25px rgba(255, 40, 130, 0.20),
@@ -481,3 +481,101 @@ footer {
         gap: 8px;
     }
 }
+
+
+/* botao de ver todos */
+
+.btn-ver-todos {
+    display: block;
+    margin: 25px auto 0;
+    padding: 16px 30px;
+    background: rgba(255, 63, 145, 0.10);
+    border: 1px solid var(--rosa);
+    border-radius: 8px;
+    color: var(--rosa-claro);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-ver-todos:hover {
+    background: var(--rosa);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 63, 145, 0.5);
+    transform: translateY(-3px);
+}
+
+/* lista */
+
+.lista-digimons {
+    display: none;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.lista-digimons h2 {
+    color: white;
+    text-align: center;
+    font-size: 32px;
+    letter-spacing: 3px;
+    margin: 30px 0 12px;
+    text-shadow: 0 0 12px var(--rosa);
+}
+
+#totalDigimons {
+    color: var(--rosa-claro);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 13px;
+}
+
+.grade-digimons {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.item-digimon {
+    background: rgba(17, 7, 17, 0.94);
+    border: 1px solid var(--rosa-escuro);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.item-digimon:hover {
+    border-color: var(--rosa);
+    box-shadow: 0 0 18px rgba(255, 63, 145, 0.35);
+    transform: translateY(-5px);
+}
+
+.item-digimon img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+
+.item-digimon p {
+    color: var(--rosa-claro);
+    font-weight: bold;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+@media (max-width: 520px) {
+    .grade-digimons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .btn-ver-todos {
+        width: 100%;
+        font-size: 12px;
+    }
+}
+

@@ -36,6 +36,10 @@
                     <button id="btnPesquisar">PESQUISAR</button>
                 </div>
 
+                <button id="btnVerTodos" class="btn-ver-todos">
+                    VER TODOS OS DIGIMON ↓
+                </button>
+
                 <p class="dica">
                     Tente: Agumon, Gabumon, Patamon ou Tentomon
                 </p>
@@ -44,6 +48,25 @@
 
                 <div class="decoracao baixo"></div>
             </div>
+        </section>
+
+        <!-- LISTA DE TODOS OS DIGIMONS -->
+        <section class="lista-digimons" id="listaDigimons">
+
+            <div class="topo-resultado">
+                <button class="voltar" id="btnVoltarLista">
+            ← VOLTAR
+                </button>
+
+        <span class="status">● DATABASE ONLINE</span>
+            </div>
+
+                <h2>TODOS OS DIGIMONS</h2>
+
+                <p id="totalDigimons">Carregando banco de dados...</p>
+
+              <div class="grade-digimons" id="gradeDigimons"></div>
+
         </section>
 
         <!-- CARTÃO DO DIGIMON -->
@@ -117,11 +140,6 @@
                 </div>
             </article>
 
-            <div class="navegacao">
-                <button id="btnAnterior">← ANTERIOR</button>
-                <span id="contador">01 / 04</span>
-                <button id="btnProximo">PRÓXIMO →</button>
-            </div>
 
         </section>
     </main>
