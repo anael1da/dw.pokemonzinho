@@ -4,8 +4,14 @@ let atual = 0;
 const inicio = document.getElementById("inicio");
 const resultado = document.getElementById("resultado");
 
+//busca por nome
 const campoPesquisa = document.getElementById("campoPesquisa");
 const btnPesquisar = document.getElementById("btnPesquisar");
+
+//busca por id
+const campoPesquisaId = document.getElementById("campoPesquisaId");
+const btnPesquisarId = document.getElementById("btnPesquisarId");
+
 const btnVoltar = document.getElementById("btnVoltar");
 
 const mensagemErro = document.getElementById("mensagemErro");
@@ -13,14 +19,14 @@ const mensagemErro = document.getElementById("mensagemErro");
 
 // buscar um digimon
 
-async function buscarDigimon(nome) {
+async function buscarDigimon(requisicao) {
 
     try {
 
         mensagemErro.textContent = "Pesquisando...";
 
         const resposta = await fetch(
-            `https://digi-api.com/api/v1/digimon/${encodeURIComponent(nome)}`
+            `https://digi-api.com/api/v1/digimon/${encodeURIComponent(requisicao)}`
         );
 
         if (!resposta.ok) {
@@ -36,7 +42,7 @@ async function buscarDigimon(nome) {
     } catch (erro) {
 
         mensagemErro.textContent =
-            "Digimon não encontrado. Tente outro nome.";
+            "Digimon não encontrado! Tente outra pesquisa.";
 
         return null;
     }
@@ -176,11 +182,12 @@ function abrirResultado(digimon) {
 
 // pesquisa
 
+//nome
 async function pesquisarDigimon() {
 
-    const busca = campoPesquisa.value.trim();
+    const busca_nome = campoPesquisa.value.trim();
 
-    if (busca === "") {
+    if (busca_nome === "") {
 
         mensagemErro.textContent =
             "Digite o nome de um Digimon.";
@@ -189,7 +196,36 @@ async function pesquisarDigimon() {
     }
 
 
-    const digimon = await buscarDigimon(busca);
+    const digimon = await buscarDigimon(busca_nome);
+
+
+    if (!digimon) {
+        return;
+    }
+
+
+    digimons = [digimon];
+
+    atual = 0;
+
+    abrirResultado(digimon);
+}
+
+//id
+async function pesquisarDigimonId() {
+
+    const busca_id = campoPesquisaId.value.trim();
+
+    if (busca_id === "") {
+
+        mensagemErro.textContent =
+            "Digite o Id de um Digimon.";
+
+        return;
+    }
+
+
+    const digimon = await buscarDigimon(busca_id);
 
 
     if (!digimon) {
@@ -211,6 +247,11 @@ btnPesquisar.addEventListener(
     pesquisarDigimon
 );
 
+btnPesquisarId.addEventListener(
+    "click",
+    pesquisarDigimonId
+);
+
 // aperta enter
 
 campoPesquisa.addEventListener(
@@ -224,7 +265,16 @@ campoPesquisa.addEventListener(
     }
 );
 
+campoPesquisaId.addEventListener(
+    "keydown",
+    function (evento) {
 
+        if (evento.key === "Enter") {
+
+            pesquisarDigimonId();
+        }
+    }
+);
 
 // botao voltar
 
